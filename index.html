@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Преподаватель | Портфолио</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Хедер с анимацией -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="logo fade-in">
+                <span class="logo-accent">P</span>rofessor
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link slide-in-left">Главная</a></li>
+                    <li><a href="#about" class="nav-link slide-in-left">Обо мне</a></li>
+                    <li><a href="#achievements" class="nav-link slide-in-left">Достижения</a></li>
+                    <li><a href="#portfolio" class="nav-link slide-in-left">Портфолио</a></li>
+                    <li><a href="#students" class="nav-link slide-in-left">Студенты</a></li>
+                    <li><a href="#contact" class="nav-link slide-in-left">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero секция -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title">Приветствую на моей странице!</h1>
+            <p class="hero-subtitle">Доктор наук, профессор кафедры информатики</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary scale-in">Узнать больше</a>
+                <a href="#contact" class="btn btn-secondary scale-in">Связаться</a>
+            </div>
+        </div>
+        <div class="hero-image float-animation">
+            <div class="image-placeholder"></div>
+        </div>
+        <div class="scroll-down">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
+
+    <!-- О преподавателе -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Обо мне</h2>
+                <p class="section-subtitle">Немного о моем пути в науке и преподавании</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image slide-in-left">
+                    <div class="image-frame">
+                        <div class="image-placeholder"></div>
+                    </div>
+                </div>
+                <div class="about-text slide-in-right">
+                    <h3 class="about-name">Иван Иванович Иванов</h3>
+                    <p class="about-position">Доктор технических наук, профессор</p>
+                    <div class="about-stats">
+                        <div class="stat-item fade-in">
+                            <span class="stat-number" data-count="25">0</span>
+                            <span class="stat-label">лет преподавания</span>
+                        </div>
+                        <div class="stat-item fade-in">
+                            <span class="stat-number" data-count="50">0</span>
+                            <span class="stat-label">публикаций</span>
+                        </div>
+                        <div class="stat-item fade-in">
+                            <span class="stat-number" data-count="10">0</span>
+                            <span class="stat-label">докторских</span>
+                        </div>
+                    </div>
+                    <p class="about-description">
+                        Страстный исследователь и преданный преподаватель с более чем 25-летним опытом в области информатики. Моя миссия - вдохновлять студентов на достижение выдающихся результатов в науке и технологиях.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Достижения -->
+    <section class="section achievements-section" id="achievements">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Научные достижения</h2>
+                <p class="section-subtitle">Ключевые работы и награды</p>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card slide-in-bottom">
+                    <div class="achievement-icon">🏆</div>
+                    <h3 class="achievement-title">Государственная премия</h3>
+                    <p class="achievement-description">За выдающийся вклад в развитие информатики и подготовку научных кадров</p>
+                    <span class="achievement-year">2022</span>
+                </div>
+                <div class="achievement-card slide-in-bottom">
+                    <div class="achievement-icon">🔬</div>
+                    <h3 class="achievement-title">Международная конференция</h3>
+                    <p class="achievement-description">Доклад на конференции по искусственному интеллекту в Стэнфорде</p>
+                    <span class="achievement-year">2021</span>
+                </div>
+                <div class="achievement-card slide-in-bottom">
+                    <div class="achievement-icon">📚</div>
+                    <h3 class="achievement-title">Монография</h3>
+                    <p class="achievement-description">Выпуск фундаментальной работы по машинному обучению</p>
+                    <span class="achievement-year">2020</span>
+                </div>
+                <div class="achievement-card slide-in-bottom">
+                    <div class="achievement-icon">🎓</div>
+                    <h3 class="achievement-title">Лучший преподаватель</h3>
+                    <p class="achievement-description">Приз университета за выдающиеся достижения в преподавании</p>
+                    <span class="achievement-year">2019</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section class="section portfolio-section" id="portfolio">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Научные работы</h2>
+                <p class="section-subtitle">Избранные публикации и исследования</p>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="articles">Статьи</button>
+                <button class="filter-btn" data-filter="books">Книги</button>
+                <button class="filter-btn" data-filter="projects">Проекты</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item slide-in-bottom" data-category="articles">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Машинное обучение: современные подходы</h3>
+                        <p class="portfolio-description">Обзор современных методов и алгоритмов машинного обучения</p>
+                        <a href="#" class="portfolio-link">Читать →</a>
+                    </div>
+                </div>
+                <div class="portfolio-item slide-in-bottom" data-category="books">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Основы искусственного интеллекта</h3>
+                        <p class="portfolio-description">Учебное пособие для студентов технических специальностей</p>
+                        <a href="#" class="portfolio-link">Подробнее →</a>
+                    </div>
+                </div>
+                <div class="portfolio-item slide-in-bottom" data-category="projects">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Исследовательский проект</h3>
+                        <p class="portfolio-description">Разработка системы автоматического анализа данных</p>
+                        <a href="#" class="portfolio-link">Смотреть →</a>
+                    </div>
+                </div>
+                <div class="portfolio-item slide-in-bottom" data-category="articles">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">Нейронные сети в практике</h3>
+                        <p class="portfolio-description">Практическое применение нейросетей в реальных задачах</p>
+                        <a href="#" class="portfolio-link">Читать →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Студенты -->
+    <section class="section students-section" id="students">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Мои студенты</h2>
+                <p class="section-subtitle">Выпускники и их достижения</p>
+            </div>
+            <div class="students-slider">
+                <div class="student-card slide-in">
+                    <div class="student-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <h3 class="student-name">Алексей Петров</h3>
+                    <p class="student-position">Выпускник 2023</p>
+                    <p class="student-achievement">Работает в Яндекс, ведущий разработчик</p>
+                </div>
+                <div class="student-card slide-in">
+                    <div class="student-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <h3 class="student-name">Мария Сидорова</h3>
+                    <p class="student-position">Выпускница 2022</p>
+                    <p class="student-achievement">Защитила кандидатскую диссертацию</p>
+                </div>
+                <div class="student-card slide-in">
+                    <div class="student-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <h3 class="student-name">Дмитрий Козлов</h3>
+                    <p class="student-position">Выпускник 2021</p>
+                    <p class="student-achievement">Основатель стартапа в области AI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Связаться со мной</h2>
+                <p class="section-subtitle">Буду рад ответить на ваши вопросы</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info slide-in-left">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>professor@university.edu</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Телефон</h4>
+                            <p>+7 (XXX) XXX-XX-XX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div class="contact-details">
+                            <h4>Адрес</h4>
+                            <p>Университет, кабинет 404</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link scale-hover">📱</a>
+                        <a href="#" class="social-link scale-hover">📧</a>
+                        <a href="#" class="social-link scale-hover">🔗</a>
+                        <a href="#" class="social-link scale-hover">📚</a>
+                    </div>
+                </div>
+                <div class="contact-form slide-in-right">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Сообщение" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block scale-hover">
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-accent">P</span>rofessor
+                </div>
+                <p class="footer-text">© 2026 Все права защищены</p>
+                <div class="footer-links">
+                    <a href="#home">Главная</a>
+                    <a href="#about">Обо мне</a>
+                    <a href="#portfolio">Портфолио</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
