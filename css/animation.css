@@ -93,6 +93,12 @@
 
 .float-animation {
     animation: float 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* Отключаем CSS анимацию float при прокрутке, чтобы избежать конфликтов с JS параллаксом */
+.float-animation.parallax-active {
+    animation: none;
 }
 
 /* Мигающий курсор прокрутки */
@@ -160,6 +166,17 @@
     background: var(--primary-color);
     z-index: -1;
     animation: pulse 2s infinite;
+}
+
+/* Отключаем пульсацию на мобильных устройствах для производительности */
+@media (prefers-reduced-motion: reduce) {
+    .btn-primary::after {
+        animation: none;
+    }
+    
+    .float-animation {
+        animation: none;
+    }
 }
 
 /* Анимация для цифр */
