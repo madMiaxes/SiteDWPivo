@@ -102,12 +102,22 @@ const parallaxElements = document.querySelectorAll('.float-animation');
 
 const updateParallax = () => {
     const scrolled = window.pageYOffset;
-    const speed = 0.5;
-    const yPos = -(scrolled * speed);
     
-    parallaxElements.forEach(element => {
-        element.style.transform = `translateY(${yPos}px)`;
-    });
+    // Отключаем параллакс после прокрутки более 100px для предотвращения рывков
+    if (scrolled > 100) {
+        parallaxElements.forEach(element => {
+            element.classList.add('parallax-active');
+            element.style.transform = '';
+        });
+    } else {
+        const speed = 0.3;
+        const yPos = -(scrolled * speed);
+        
+        parallaxElements.forEach(element => {
+            element.classList.remove('parallax-active');
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    }
     
     rafId = null;
 };
@@ -117,3 +127,6 @@ window.addEventListener('scroll', () => {
         rafId = requestAnimationFrame(updateParallax);
     }
 }, { passive: true });
+
+// Инициализация при загрузке
+updateParallax();
