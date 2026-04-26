@@ -18,28 +18,37 @@ document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-left, .slide-in-righ
     observer.observe(element);
 });
 
-// Анимация счетчиков
+// Оптимизированная анимация счетчиков с requestAnimationFrame
 const statNumbers = document.querySelectorAll('.stat-number');
 const statObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const target = entry.target;
             const countTo = parseInt(target.getAttribute('data-count'));
-            let count = 0;
-            const increment = countTo / 50;
+            const duration = 1500; // 1.5 секунды
+            const startTime = performance.now();
+            const startValue = 0;
             
             target.classList.add('animate');
             
-            const timer = setInterval(() => {
-                count += increment;
-                if (count >= countTo) {
-                    target.textContent = countTo;
-                    clearInterval(timer);
+            const animateCount = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function (ease-out)
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentValue = Math.floor(startValue + (countTo - startValue) * easeProgress);
+                
+                target.textContent = currentValue;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animateCount);
                 } else {
-                    target.textContent = Math.floor(count);
+                    target.textContent = countTo;
                 }
-            }, 30);
+            };
             
+            requestAnimationFrame(animateCount);
             statObserver.unobserve(entry.target);
         }
     });
@@ -49,11 +58,12 @@ statNumbers.forEach(number => {
     statObserver.observe(number);
 });
 
-// Изменение стиля хедера при прокрутке
+// Оптимизированное изменение стиля хедера с throttle
 const header = document.getElementById('header');
 let lastScroll = 0;
+let ticking = false;
 
-window.addEventListener('scroll', () => {
+const updateHeader = () => {
     const currentScroll = window.pageYOffset;
     
     if (currentScroll > 100) {
@@ -63,7 +73,17 @@ window.addEventListener('scroll', () => {
     }
     
     lastScroll = currentScroll;
-});
+    ticking = false;
+};
+
+const onScroll = () => {
+    if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+    }
+};
+
+window.addEventListener('scroll', onScroll, { passive: true });
 
 // Анимация курсора прокрутки
 const scrollDown = document.querySelector('.scroll-down');
@@ -76,14 +96,37 @@ if (scrollDown) {
     });
 }
 
-// Параллакс эффект для фона
-window.addEventListener('scroll', () => {
+// Оптимизированный параллакс эффект с requestAnimationFrame и throttle
+let rafId = null;
+const parallaxElements = document.querySelectorAll('.float-animation');
+
+const updateParallax = () => {
     const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.float-animation');
     
-    parallaxElements.forEach(element => {
-        const speed = 0.5;
+    // Отключаем параллакс после прокрутки более 100px для предотвращения рывков
+    if (scrolled > 100) {
+        parallaxElements.forEach(element => {
+            element.classList.add('parallax-active');
+            element.style.transform = '';
+        });
+    } else {
+        const speed = 0.3;
         const yPos = -(scrolled * speed);
-        element.style.transform = `translateY(${yPos}px)`;
-    });
-});
+        
+        parallaxElements.forEach(element => {
+            element.classList.remove('parallax-active');
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    }
+    
+    rafId = null;
+};
+
+window.addEventListener('scroll', () => {
+    if (!rafId) {
+        rafId = requestAnimationFrame(updateParallax);
+    }
+}, { passive: true });
+
+// Инициализация при загрузке
+updateParallax();

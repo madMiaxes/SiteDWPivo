@@ -226,9 +226,15 @@ body {
     position: absolute;
     right: 5%;
     top: 50%;
-    transform: translateY(-50%);
     width: 400px;
     height: 400px;
+    transform: translateY(-50%);
+    will-change: transform;
+}
+
+/* Отключаем трансформацию при прокрутке, чтобы избежать конфликтов с JS параллаксом */
+.hero-image.parallax-active {
+    transform: none !important;
 }
 
 .image-placeholder {
@@ -237,6 +243,12 @@ body {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 20px;
     box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+/* Изображение в секции "Обо мне" */
+.about-image .image-placeholder {
+    object-fit: cover;
 }
 
 /* Секции */
@@ -280,6 +292,12 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+}
+
+.image-frame .image-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-text h3 {
@@ -401,7 +419,11 @@ body {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: var(--transition);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item[style*="display: none"] {
+    opacity: 0;
 }
 
 .portfolio-item:hover {
@@ -413,6 +435,13 @@ body {
     width: 100%;
     aspect-ratio: 16/9;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    overflow: hidden;
+}
+
+.portfolio-image .image-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .portfolio-info {
@@ -469,6 +498,12 @@ body {
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     overflow: hidden;
+}
+
+.student-image .image-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .student-name {
@@ -686,5 +721,16 @@ body {
     
     .section-header {
         margin-bottom: 40px;
+    }
+}
+
+/* Улучшение производительности на мобильных устройствах */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

@@ -2,25 +2,34 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const navList = document.querySelector('.nav-list');
 
-menuToggle.addEventListener('click', () => {
-    navList.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-});
-
-// Закрытие меню при клике на ссылку
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navList.classList.remove('active');
-        menuToggle.classList.remove('active');
+if (menuToggle && navList) {
+    menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        menuToggle.classList.toggle('active');
     });
-});
+    
+    // Закрытие меню при клике на ссылку
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
+    });
+}
 
-// Фильтрация портфолио
-const filterButtons = document.querySelectorAll('.filter-btn');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
+// Фильтрация портфолио с использованием делегирования событий и DocumentFragment
+const filterButtonsContainer = document.querySelector('.portfolio-filters');
+const portfolioGrid = document.querySelector('.portfolio-grid');
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
+if (filterButtonsContainer && portfolioGrid) {
+    const filterButtons = filterButtonsContainer.querySelectorAll('.filter-btn');
+    const portfolioItems = portfolioGrid.querySelectorAll('.portfolio-item');
+    
+    // Делегирование событий для кнопок фильтрации
+    filterButtonsContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('.filter-btn');
+        if (!button) return;
+        
         // Убираем активный класс у всех кнопок
         filterButtons.forEach(btn => btn.classList.remove('active'));
         // Добавляем активный класс к текущей кнопке
@@ -31,20 +40,22 @@ filterButtons.forEach(button => {
         portfolioItems.forEach(item => {
             if (filter === 'all' || item.getAttribute('data-category') === filter) {
                 item.style.display = 'block';
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 100);
+                // Force reflow
+                void item.offsetWidth;
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
             } else {
                 item.style.opacity = '0';
                 item.style.transform = 'translateY(20px)';
                 setTimeout(() => {
-                    item.style.display = 'none';
+                    if (item.style.opacity === '0') {
+                        item.style.display = 'none';
+                    }
                 }, 300);
             }
         });
     });
-});
+}
 
 // Форма контактов
 const contactForm = document.getElementById('contactForm');
@@ -64,7 +75,8 @@ if (contactForm) {
     });
 }
 
-// Плавная прокрутка к якорям
+// Плавная прокрутка к якорям с оптимизацией
+let scrollTimeout = null;
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -74,6 +86,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
+            // Очищаем предыдущий таймер
+            if (scrollTimeout) {
+                scrollTimeout = null;
+            }
+            
             window.scrollTo({
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
